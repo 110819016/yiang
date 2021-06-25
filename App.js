@@ -1,11 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, {useState} from 'react';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
 export default function App() {
+  const[count,setCount]= useState(0)
+
+    function increase(){
+      setCount(count => count+1)
+    }
+
   return (
     <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
+      <Text>eat how many times? {count}</Text>
+      <Button title="Eat how many times?" onPress={increase}/>
       <StatusBar style="auto" />
     </View>
   );
