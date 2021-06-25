@@ -1,0 +1,12 @@
+{
+  "name": "yiang",
+  "displayName": "yiang",
+  "expo": {
+    "name": "yiang",
+    "slug": "yiang",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
