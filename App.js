@@ -4,6 +4,8 @@ import React, {useState, useEffect} from 'react';
 import {StyleSheet, Text, View, Image, Pressable, Alert, SafeAreaView, ScrollView} from 'react-native';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
+import {styles} from "./style/MainStyle";
+import {useFonts} from "expo-font";
 
 function Room({navigation}) {
     return (
@@ -157,9 +159,21 @@ function LiangScreen({navigation}) {
 const Stack = createStackNavigator()
 
 export default function App() {
+
+    const [loaded] = useFonts({
+        NotoLight: require('./assets/fonts/NotoSansTC-Light.otf'),
+        NotoBold: require('./assets/fonts/NotoSansTC-Bold.otf'),
+        NotoRegular: require('./assets/fonts/NotoSansTC-Regular.otf')
+    })
+
+    if(!loaded){
+        return null
+    }
+
+
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Liang">
+            <Stack.Navigator initialRouteName="Room">
                 <Stack.Screen name='Liang' options={{title: '亮亮'}} component={LiangScreen}/>
                 <Stack.Screen name='Yiyi' options={{title: '宜宜'}} component={YiyiScreen}/>
                 <Stack.Screen name='Setting' options={{title: '設定'}} component={SettingScreen}/>

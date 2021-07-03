@@ -4,7 +4,7 @@
   "expo": {
     "name": "yiang",
     "slug": "yiang",
-    "icon": "./assets/piedaxin.png",
+    "icon": "./assets/image/piedaxin.png",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"
