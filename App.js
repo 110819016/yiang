@@ -96,16 +96,102 @@ function MemoryDetailsScreen({navigation}){
 
 function SettingScreen({navigation}) {
     return (
-        <View style={styles.container2}>
-            <Image style={styles.Image} source={require('./assets/image/beau.jpg')}/>
-            <Text style={styles.text}>Name:Yiyi</Text>
-            <Text style={styles.text}>Age:19</Text>
-            <Pressable style={styles.button} onPress={() => navigation.goBack()}>
-                <Text style={styles.buttonTitle}>回上一頁</Text>
-            </Pressable>
-            <Pressable style={styles.button} onPress={() => navigation.popToTop()}>
-                <Text style={styles.buttonTitle}>回主畫面</Text>
-            </Pressable>
+        <View style={settingStyle.settingScreenContainer}>
+            <View style={settingStyle.titleContainer}>
+                <Text style={settingStyle.titleRightText}>SETTINGS</Text>
+            </View>
+            <View style={settingStyle.divider}></View>
+            <View style={settingStyle.settingTitle}>
+                <Text style={settingStyle.settingTitleText}>外觀</Text>
+            </View>
+            <View style={settingStyle.settingContainer}>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#d72f2f" : "#ff2e2e"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>深色模式</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>使用背景</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>字體大小</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>色盲模式</Text>
+                </View>
+            </View>
+            <View style={settingStyle.divider}></View>
+            <View style={settingStyle.settingTitle}>
+                <Text style={settingStyle.settingTitleText}>通知</Text>
+            </View>
+            <View style={settingStyle.settingContainer}>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>開啟通知</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>震動</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>鈴聲</Text>
+                </View>
+                <View style={settingStyle.settingContainerText}>
+                    <Switch
+                        trackColor={{ false: "#767577", true: "#c18db2" }}
+                        thumbColor={isEnabled ? "#fcfcfc" : "#fdfdfd"}
+                        ios_backgroundColor="#3e3e3e"
+                        onValueChange={setIsEnabled}
+                        value={isEnabled}
+                    />
+                    <Text>最愛宜宜</Text>
+                </View>
+            </View>
             <StatusBar style="auto"/>
         </View>
 
@@ -127,6 +213,9 @@ function YiyiScreen({navigation}) {
             <Pressable style={styles.button} onPress={() => navigation.navigate('Setting')}>
                 <Text style={styles.buttonTitle}>設定</Text>
             </Pressable>
+            <Pressable style={styles.button} onPress={() => navigation.navigate('Room')}>
+                <Text style={styles.buttonTitle}>房間</Text>
+            </Pressable>
             <StatusBar style="auto"/>
         </View>
 
@@ -145,8 +234,8 @@ function LiangScreen({navigation}) {
             <Pressable style={styles.button2} onPress={() => navigation.navigate('Yiyi')}>
                 <Text style={styles.buttonTitle2}>宜宜唷</Text>
             </Pressable>
-            <Pressable style={styles.button2} onPress={() => navigation.navigate('Setting')}>
-                <Text style={styles.buttonTitle2}>設定</Text>
+            <Pressable style={styles.button2} onPress={() => navigation.popToTop()}>
+                <Text style={styles.buttonTitle2}>回首頁</Text>
             </Pressable>
             <Pressable style={styles.button2} onPress={() => navigation.push('Liang')}>
                 <Text style={styles.buttonTitle2}>亮多一個</Text>
@@ -179,6 +268,7 @@ export default function App() {
                 <Stack.Screen name='Setting' options={{title: '設定'}} component={SettingScreen}/>
                 <Stack.Screen name='Room' options={{title: '房間'}} component={Room}/>
                 <Stack.Screen name='Memory' options={{title:'回憶錄'}} component={MemoryDetailsScreen}/>
+                <Stack.Screen name='Login' options={{title: '登入頁'}} component={loginScreen}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

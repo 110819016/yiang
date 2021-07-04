@@ -26,7 +26,6 @@ export const styles = StyleSheet.create({
     },
 
     memoryContainer: {
-
         height: 'auto',
         alignItems: 'center', //橫
         justifyContent: 'flex-start', //直
