@@ -1,11 +1,82 @@
 import 'react-native-gesture-handler';
 import {StatusBar} from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
-import {StyleSheet, Text, View, Image, Pressable, Alert, SafeAreaView, ScrollView} from 'react-native';
+import {Text, View, Image, Pressable, Alert, ScrollView, Switch, TextInput} from 'react-native';
 import {createStackNavigator} from "@react-navigation/stack";
 import {NavigationContainer} from "@react-navigation/native";
-import {styles} from "./style/MainStyle";
+import {styles, settingStyle, loginStyle} from "./style/MainStyle";
 import {useFonts} from "expo-font";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+function AddMemory({navigation}){
+
+}
+
+const setData = async (text) =>{
+    try{
+        await AsyncStorage.setItem('key',text)
+        console.log(text + " set.")
+        console.log(getData())
+    } catch(error){
+        console.log(error)
+    }
+}
+
+const getData = async ()=>{
+    try{
+        const data = AsyncStorage.getItem('key')
+        console.log(data + " get.")
+        if(data !== null) {
+            return data
+        }
+    } catch(error){
+        console.log(error)
+    }
+}
+
+function loginScreen({navigation}){
+    const [userName,setUserName] = useState("")
+    const [userPassword,setUserPassword] = useState("")
+
+
+
+    return(
+        <View style={loginStyle.loginContainer}>
+            <View style={loginStyle.titleContainer}>
+                <Text style={loginStyle.titleEngText}>Yiang Map</Text>
+                <Text style={loginStyle.titleChinText}>情侶的專屬解答</Text>
+            </View>
+            <TextInput
+                style={loginStyle.loginID}
+                placeholder={"Email / Username"}
+                onChangeText={setUserName}
+                value={userName}
+            />
+            <TextInput
+                style={loginStyle.loginPassword}
+                placeholder={"Password"}
+                onChangeText={setUserPassword}
+                value={userPassword}
+            />
+            <Pressable style={loginStyle.loginPressable} onPress={()=> setData(userName)}>
+                <Text style={loginStyle.loginPressableText}>登入</Text>
+                <Text style={loginStyle.loginPressableText}></Text>
+            </Pressable>
+            <Pressable style={loginStyle.loginContent}>
+                <Text style={loginStyle.loginContentText}>沒有帳號？ 註冊</Text>
+            </Pressable>
+            <Pressable style={loginStyle.loginContent}>
+                <Text style={loginStyle.loginContentText}>或 以訪客登入</Text>
+            </Pressable>
+            <View style={loginStyle.divider}></View>
+            <StatusBar style="auto"/>
+            <Pressable style={loginStyle.itemContent}>
+                <Text style={loginStyle.itemContentText}>使用社群帳號登入</Text>
+            </Pressable>
+        </View>
+
+    )
+}
 
 function Room({navigation}) {
     return (
@@ -95,6 +166,8 @@ function MemoryDetailsScreen({navigation}){
 }
 
 function SettingScreen({navigation}) {
+    const [isEnabled, setIsEnabled] = useState(false)
+
     return (
         <View style={settingStyle.settingScreenContainer}>
             <View style={settingStyle.titleContainer}>
@@ -262,7 +335,7 @@ export default function App() {
 
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="Room">
+            <Stack.Navigator initialRouteName="Login">
                 <Stack.Screen name='Liang' options={{title: '亮亮'}} component={LiangScreen}/>
                 <Stack.Screen name='Yiyi' options={{title: '宜宜'}} component={YiyiScreen}/>
                 <Stack.Screen name='Setting' options={{title: '設定'}} component={SettingScreen}/>
